@@ -1,0 +1,11 @@
+{
+  "id": "xavierlange",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCc/TcyRyH6QsY3nkcbtq+VpMBL+P8ObniAnNtjxGxGnbSkTUnwtPgvRfYw3zl4hTqQWOh09ThqhAZoNzvpxr7AKMiZW9mJ/oNYzCQzcu6EwiuFpbA96F0b3atVn2tZ2At9EBAqjLhn44KKNZqtSy0j25vesRDNYvbhq8YsIt5PbfyLPD5bBHiOym5ywt3nRhdKe3EEgoyZ1+3sNHTrZRljVGiscSAkqS4r9IGeOtk1+6tVGHVpVd6NgZHeK5LItl2wpc56H0RLF60Ydvi+LHU1/LuL00vShrzy2ogXuvQYIip3ifD7LGQRi2VG1NDfiDFXEyiUzjQi6A8OfygG0aQ/ xavierlange@xaviers-mbp"
+  ],
+  "groups": [ "sysadmin", "sudo" ],
+  "uid": 2001,
+  "shell": "\/bin\/bash",
+  "password": "$1$pkPZLcfR$8SclK25mqpMTxih27CvJJ.",
+  "comment": "Xavier is cool"
+}

@@ -1,0 +1,49 @@
+chef_gem "ruby-shadow" do
+  version "2.3.4"
+end
+
+user_account "xavierlange" do
+  ssh_keys [
+    # special keypair for chef
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBSKvOPNpVwKYRvgcQQA470Kaf0NGumnweZQpcUr32PydYereYEXQCR6kv6Ml41UGjB5nFfEN3LzR6KgyG/2agfxDuSqBFi7R/kQJwdyPQOLMSCout0GewjEobGjHl2ohasFXrBnKyP/aMwXYflTC0VE7d/XrWPBrWisimyWzFO4DlO1FrHIhFjAnc3eCLhIAjYsEhr/cuNNeioeR7CkO3X2ccPd4p9V7OIjI15cU5ik6O8o3IKE+wx1tbM43qVdui5c7gePW5b21bEdvzcM6/nhgOkZHY2sYipc4M8BewGL9a+HXnnN7C+H2oqtDhkGrrS1CZ+qjfJRrWHETcjI3J xavierlange@Xaviers-MacBook-Pro.local",
+    # xavier's standard public key
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCc/TcyRyH6QsY3nkcbtq+VpMBL+P8ObniAnNtjxGxGnbSkTUnwtPgvRfYw3zl4hTqQWOh09ThqhAZoNzvpxr7AKMiZW9mJ/oNYzCQzcu6EwiuFpbA96F0b3atVn2tZ2At9EBAqjLhn44KKNZqtSy0j25vesRDNYvbhq8YsIt5PbfyLPD5bBHiOym5ywt3nRhdKe3EEgoyZ1+3sNHTrZRljVGiscSAkqS4r9IGeOtk1+6tVGHVpVd6NgZHeK5LItl2wpc56H0RLF60Ydvi+LHU1/LuL00vShrzy2ogXuvQYIip3ifD7LGQRi2VG1NDfiDFXEyiUzjQi6A8OfygG0aQ/ xavierlange@xaviers-mbp"
+  ]
+  password "$1$kgVQNSxD$37anE80qBHfEi9X/Xl1ss/"
+  manage_home true
+end
+
+file "/home/xavierlange/.ssh/id_rsa" do
+  owner "xavierlange"
+  group "xavierlange"
+  mode "0600"
+  content <<-EOH
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAwUirzjzaVcCmEb4HEEAOO9Cmn9DRrpp8HmUKXFK99j8nWHq3
+mBF0AkepL+jJeNVBoweZxXxDdy80eioMhv9moH8Q7kqgRYu0f5ECcHcj0DizEgqL
+rdBnsIxKGxox5dqIWrBV6wZysj/2jMF2H5UwtFRO3f161jwa1orIpslsxTuA5TtR
+axyIRYwJ3N3gi4SAI2LBIa/3LjTXoqHkewpDt19nHD3eKfVeziIyNeXFOYpOjvKN
+yChPsMdbWzON6lXbouXO4Hj1uW9tWxHb83DOv54YDpGR2NrGIqXODPAXsBi/Wvh1
+55zewvh9qKrQ4ZBq60tQmfqo3yUa1hxE3IyNyQIDAQABAoIBAFSj2TCAL3Bb451j
+ZL51/oWtEjpr/FaEqhO5VXcmeK9L6pPxcVJzWiThcrJbM1bptEuLOYhkqTqY/lb8
+8O1xDGT+H9Dp9xNdYVZ3juTnF1TIb4pX+eDMoYuLc6w4pV8teoaUL5uzACkUn4f1
+9B9SeriNLthBdzg3q90Fe2amUC5x455p6BvGhP9MzGuBcRKPZVZySOi4h6JJ1/p4
+jFejYsLl4RBRB4Xxjqa9j/97fQZu1HZ7IkUzA4d47vRgIj5wGop4YwBr3R1N89VM
+X7fIp0joR8L8GPPH1v4T70u1aqwbRw+kLBMhEEeBZUDVTY256jfDaeRL+Ml9kzV8
+TtJ6TQECgYEA8038AHZEtZiCE8oS44RLlzgX1Da0LUInh+pBb17KrTA/rXUKwOSR
+oPHIG6Wvj8zNEdkXJIIinPGXS29+rXAdO2sQ7yhn2kkE1/Oc14vBFZkzMiB9UxfM
+2CT6oknHaVMPOv6S4pgR4nOzA9odhiA3phKydTh4dLcVeXZU3wiECmECgYEAy16E
+7vrnNle12v0yy9MUaM8bucUD8EoTRIgRwacVmOFWOlDg2pxg33psorCdSSFPwHw8
+gm8x+vpgvFqTFzTdH3fX5MUAlQ4kaErm2zXUCWHLSuCQ97At5s1N2owfv6VjnkHE
+msPqC1E1wG9J19ho/sbLtHuMPPlzLqIogAB/zGkCgYAtAK2uADIxTKYyttvLjXrV
+26A8tmmZPXVGZIP575SZeCUvFkkI6L4vAMm8o2bXuE/uDzOCozd3xA/x+gt6VRRz
+Gxikw9qBu6PTtdG65LSwJAgeK3hC2FIhYKWjQvZJev2EMfZFR093jWL9QWjYmDjy
+1N6BZBKTtBGax9Jm9pJFwQKBgAcwn0iHrFb6gN5uJzaXjtgpwlQuB/ad19KLcP1E
+t/nAtbi4FUsFTlN4U5Do55anS9eFTOpbngu+gF8IYLzoTI0JQqO+50ddyaG6TDEh
+1Q5D29kY2Wc4XlcTmRYJ8DFpWn1E2/uQw5yE0X6tMJIl/4hKZPdLiui49P6IEyB7
+ZAlJAoGAUDjI92gaP7jRPaq9oKfQoPs5fjWzCUkzgq4veYS2VRbvmaQIZa+QhMiP
+KZIUQRScdcJE2RLJCAHtQPr0zdNYx6naCf3CLnrMqFphK887ZEVAi8IDi7FH7tpd
+1nbnz7pig6ZaKsST51euHhZgGVg2f2y96dT9N08GyACmtK512iM=
+-----END RSA PRIVATE KEY-----
+EOH
+end
