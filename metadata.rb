@@ -9,16 +9,13 @@ version          '0.1.0'
 depends "ssh_known_hosts"
 depends "sudo"
 depends "users"
+depends "chef-solo-search"
 
 depends "git"
-depends "npm"
 
 depends "nginx"
 
 depends "runit"
-
-depends "application"
-depends "application_ruby"
 
 depends "database"
 depends "postgresql"

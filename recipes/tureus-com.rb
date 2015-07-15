@@ -1,51 +1,6 @@
 appspec = node['apps']['tureus-com']
 
-directory appspec['dir'] do
-  owner appspec['user']
-  group appspec['group']
-end
-
-application 'tureus-com' do
-  path "#{appspec['dir']}"
-  owner appspec['user']
-  group appspec['group']
-  repository "git@bitbucket.org:xrl/tureus-com.git"
-
-  before_deploy do
-    directory "#{new_resource.shared_path}/node_modules" do
-      owner appspec['user']
-      group appspec['group']
-    end
-    directory "#{new_resource.shared_path}/bower_components" do
-      owner appspec['user']
-      group appspec['group']
-    end
-  end
-
-  before_symlink do
-    nodejs_npm "bower" do
-      version "1.3.12"
-    end
-  end
-
-  symlinks ({"node_modules" => "node_modules",
-             "bower_components" => "bower_components"})
-
-  before_restart do
-    execute "install-dependencies" do
-      cwd new_resource.release_path
-      user appspec['user']
-      command "npm install && bower install"
-      environment ({"HOME" => "/home/#{appspec['user']}/"})
-    end
-    execute "build-app" do
-      cwd new_resource.release_path
-      user appspec['user']
-      command "#{new_resource.release_path}/node_modules/ember-cli/bin/ember build --environment=production"
-    end
-  end
-  action :force_deploy
-end
+directory appspec['dir']
 
 template "#{node['nginx']['dir']}/sites-available/tureus-com" do
   source "nginx/sites-available/tureus-com.erb"
@@ -53,9 +8,25 @@ template "#{node['nginx']['dir']}/sites-available/tureus-com" do
   group node['root_group']
   mode '0644'
   variables ({
-    :root => "#{appspec['dir']}/current/dist"
+    :root => "#{appspec['dir']}"
   })
   notifies :reload, 'service[nginx]'
+end
+
+site_release_file = "tureus.com-0.1.0.tar.gz"
+site_release_folder = site_release_file.gsub('.tar.gz','')
+cookbook_file "#{Chef::Config[:file_cache_path]}/#{site_release_file}" do
+  source site_release_file
+  notifies :run, "bash[unpack-tureus-com]"
+end
+
+bash "unpack-tureus-com" do
+  code <<-EOH
+    rm -rf #{appspec['dir']}
+    tar xzf #{Chef::Config[:file_cache_path]}/#{site_release_file} -C #{appspec['parent_dir']}
+  EOH
+
+  action :nothing
 end
 
 nginx_site "tureus-com" do

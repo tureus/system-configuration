@@ -21,7 +21,4 @@ include_recipe "system-configuration::packages"
 
 include_recipe "system-configuration::ruby"
 
-# include_recipe "system-configuration::users"
-
 include_recipe "system-configuration::tureus-com"
-include_recipe "system-configuration::twitter-instrument"

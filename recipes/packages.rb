@@ -1,3 +1,3 @@
-%w(htop tree).each do |pkg_name|
+%w(htop tree atop).each do |pkg_name|
   package pkg_name
 end

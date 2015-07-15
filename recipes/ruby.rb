@@ -3,5 +3,5 @@ apt_repository 'brightbox-ruby' do
   distribution node['lsb']['codename']
 end
 
-package "ruby2.1"
-package "ruby2.1-dev"
+package "ruby2.2"
+package "ruby2.2-dev"
